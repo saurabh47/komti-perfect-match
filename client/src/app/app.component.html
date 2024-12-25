@@ -1,0 +1,24 @@
+@if (!gender) {
+<div class="app-container">
+    <!-- App Name -->
+    <div class="app-name">
+        Komti Perfect Match
+    </div>
+    <div class="app-header">
+        <h1>Discover Your Perfect Companion
+        </h1>
+        <p class="subtitle">🌟 A Path to Love and Harmony 🌟
+        </p>
+    </div>
+    <div class="look-for-container">
+        <h2 class="title">Who are you looking for?
+        </h2>
+        <div class="button-group">
+            <button class="btn groom" (click)="selectOption('M')">👨 Groom</button>
+            <button class="btn bride" (click)="selectOption('F')">👰 Bride</button>
+        </div>
+    </div>
+</div>
+} @else {
+<app-swipe-cards [gender]="gender"></app-swipe-cards>
+}
