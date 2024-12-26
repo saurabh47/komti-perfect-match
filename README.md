@@ -4,3 +4,6 @@
 
 # System Design
 ![image](https://github.com/user-attachments/assets/6aa31a4c-3eea-45fe-b4a3-19acb1c780f7)
+
+# DB Schema
+![anubandh](https://github.com/user-attachments/assets/bce0346b-599b-4b6e-86e8-04029f337ecd)
