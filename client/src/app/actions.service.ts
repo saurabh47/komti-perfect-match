@@ -5,13 +5,15 @@ import { UsersService } from './users.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfilesService {
+export class ActionsService {
 
   constructor(private http: HttpClient, private usersService: UsersService) { }
 
-  getProfiles(gender: 'M' | 'F' = 'F', offset =0, limit = 10) {
+  createAction(
+    userId: number,
+    action: 'LIKE' | 'DISLIKE' | 'SAVE',
+  ) {
     const session = this.usersService.getUserSession() as any;
-
-    return this.http.get('/api/profiles', {params: {sessionId: session.sessionId, gender, offset, limit}});
+    return this.http.post('/api/actions', {sessionId: session.sessionId, userId, action});
   }
 }

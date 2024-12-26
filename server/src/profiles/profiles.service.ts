@@ -5,8 +5,12 @@ import { DataSource } from 'typeorm';
 export class ProfilesService {
     constructor(private dataSource: DataSource) {}
 
-    async getProfiles(gender: 'M' | 'F' = 'F', offset=0, limit = 10) {
-        return this.dataSource.query(`SELECT * FROM users WHERE is_deleted = false and gender = '${gender}' order by user_id desc LIMIT ${limit} OFFSET ${offset}`);
+    async getProfiles(sessionId: string, gender: 'M' | 'F' = 'F', offset=0, limit = 10) {
+        return this.dataSource.query(
+            `SELECT u.* FROM users u
+            LEFT JOIN user_actions ua on ua.session_id = ${sessionId} and ua.user_id = u.user_id
+            WHERE u.is_deleted = false and u.gender = '${gender}' and ua.user_id is null
+            order by u.user_id desc LIMIT ${limit} OFFSET ${offset}`);
     }
 
 }

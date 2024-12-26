@@ -4,6 +4,12 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProfilesService } from './profiles/profiles.service';
 import { ProfilesController } from './profiles/profiles.controller';
+import { UsersController } from './users/users.controller';
+import { ActionsController } from './actions/actions.controller';
+import { ActionsService } from './actions/actions.service';
+import { UsersService } from './users/users.service';
+import { UserAction } from './entities/user-action.entity';
+import { UserSession } from './entities/user-session.entity';
 
 @Module({
   imports: [
@@ -14,11 +20,12 @@ import { ProfilesController } from './profiles/profiles.controller';
       username: 'root',
       password: '',
       database: 'anubandh',
-      entities: [],
-      synchronize: true,
+      entities: [UserAction, UserSession],
+      synchronize: false,
     }),
+    TypeOrmModule.forFeature([UserSession, UserAction]),
   ],
-  controllers: [AppController, ProfilesController],
-  providers: [AppService, ProfilesService],
+  controllers: [AppController, ProfilesController, UsersController, ActionsController],
+  providers: [AppService, ProfilesService, ActionsService, UsersService],
 })
 export class AppModule {}

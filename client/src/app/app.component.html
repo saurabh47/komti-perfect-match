@@ -1,4 +1,4 @@
-@if (!gender) {
+@if (!selectedGender) {
 <div class="app-container">
     <!-- App Name -->
     <div class="app-name">
@@ -20,5 +20,5 @@
     </div>
 </div>
 } @else {
-<app-swipe-cards [gender]="gender"></app-swipe-cards>
+<app-swipe-cards [gender]="selectedGender"></app-swipe-cards>
 }

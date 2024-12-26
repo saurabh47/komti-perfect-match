@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CdkDrag, CdkDragEnd } from '@angular/cdk/drag-drop';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ProfilesService } from '../profiles.service';
+import { ActionsService } from '../actions.service';
 
 @Component({
   selector: 'app-swipe-cards',
@@ -18,8 +19,8 @@ export class SwipeCardsComponent {
   @Input() gender: 'M' | 'F' = 'F';
   showEmoji = false;
 
-
-  constructor(private profilesService: ProfilesService) {}
+  constructor(private profilesService: ProfilesService, 
+      private actionsService: ActionsService) {}
 
   ngOnInit(): void {
     // Load initial profiles
@@ -38,11 +39,11 @@ export class SwipeCardsComponent {
   
     if (x > 150) {
       // Swiped Right
-      card.swiped = 'right';
+      card.action = 'LIKE';
       setTimeout(() => this.removeCard(card), 300); // Delay removal for smooth animation
     } else if (x < -150) {
       // Swiped Left
-      card.swiped = 'left';
+      card.action = 'DISLIKE';
       setTimeout(() => this.removeCard(card), 300); // Delay removal for smooth animation
     } else {
       event.source.reset(); // Reset the card's position if not swiped enough
@@ -51,42 +52,29 @@ export class SwipeCardsComponent {
   
   removeCard(card: any): void {
     this.profiles = this.profiles.filter(c => c !== card);
+
+    this.actionsService.createAction(card.user_id, card.action).subscribe(resp => console.log(resp));
     // Check if more profiles need to be loaded
     if (this.profiles.length < 5) {
       this.loadMoreProfiles();
     }
   }
-  
-  onDislike(card: any): void {
-    card.swiped = 'left';
-    setTimeout(() => this.removeCard(card), 300); // Simulate swipe left on button click
-  }
-  
-  onLike(card: any): void {
-    card.swiped = 'right';
-    setTimeout(() => this.removeCard(card), 300); // Simulate swipe right on button click
-  }
-  
+
   stopPropagation(event: MouseEvent): void {
     event.stopPropagation();
   }
   
-
-  swipeCard(card: any, direction: string): void {
-    card.swiped = direction;
-    setTimeout(() => this.removeCard(card), 300); // Simulate swipe right on button click
-  }
-
-  swipe(direction: string): void {
+  swipe(action: string): void {
     const profile = this.profiles[0];
+    profile.action = action;
     if (profile) {
-      this.swipeCard(profile, direction);
+      setTimeout(() => this.removeCard(profile), 300); // Simulate swipe right on button click
     }
   }
 
   saveProfile() {
     this.showEmoji = true;
-    this.swipe('saved');
+    this.swipe('SAVE');
     // Hide the emoji after 3 seconds
     setTimeout(() => {
       this.showEmoji = false;
@@ -97,4 +85,20 @@ export class SwipeCardsComponent {
     card.showDetails = !card.showDetails;
   }
   
+  handleKeyPress(event: KeyboardEvent): void {
+    switch (event.key) {
+      case 'ArrowLeft':
+        this.swipe('DISLIKE');
+        break;
+      case 'ArrowRight':
+        this.swipe('LIKE');
+        break;
+      case 'ArrowUp':
+      case 'ArrowDown':
+        this.saveProfile();
+        break;
+      default:
+        break;
+    }
+  }
 }

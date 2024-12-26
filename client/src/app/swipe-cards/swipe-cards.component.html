@@ -1,4 +1,4 @@
-<div class="card-container">
+<div class="card-container" (document:keydown)="handleKeyPress($event)">
     <div
       *ngFor="let profile of profiles; let i = index"
       class="card"
@@ -7,9 +7,9 @@
       [style.zIndex]="profiles.length - i"
       [class.active]="i === 0"
       [class.behind]="i > 0"
-      [class.swipe-left]="profile.swiped === 'left'" 
-      [class.swipe-right]="profile.swiped === 'right'"
-      [class.swipe-down]="profile.swiped === 'saved'"
+      [class.swipe-left]="profile.action === 'DISLIKE'" 
+      [class.swipe-right]="profile.action === 'LIKE'"
+      [class.swipe-down]="profile.action === 'SAVE'"
       (cdkDragEnded)="onSwipe($event, profile)"
       (click)="toggleDetails(profile)"
     >
@@ -42,7 +42,7 @@
     <button
       class="btn dislike"
       (mousedown)="stopPropagation($event)"
-      (click)="swipe('left')"
+      (click)="swipe('DISLIKE')"
     >
       👎
     </button>
@@ -56,7 +56,7 @@
     <button
       class="btn like"
       (mousedown)="stopPropagation($event)"
-      (click)="swipe('right')"
+      (click)="swipe('LIKE')"
     >
       👍
     </button>
