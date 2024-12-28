@@ -12,7 +12,7 @@
     align-items: center;
     height: 100%;
     margin: 0;
-    background: linear-gradient(135deg, #FFB6C1, #F08080); /* Soft gradient background */
+    background: linear-gradient(135deg, var(--ion-color-primary-shade), var(--ion-color-primary)); /* Soft gradient background */
     font-family: 'Arial', sans-serif;
     color: #fff;
   }
