@@ -1,0 +1,151 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile filters</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="confirm()" [strong]="true"
+        >Confirm</ion-button
+      >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list [inset]="true">
+    <ion-item lines="none">
+      <ion-label color="medium">Age</ion-label>
+      <ion-note slot="end">Between {{ _internalModel?.age?.lower }} to
+        {{ _internalModel?.age?.upper }}</ion-note>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-range
+        aria-label="Age"
+        min="18"
+        max="45"
+        [dualKnobs]="true"
+        [value]="_internalModel?.age"
+        (ionChange)="onAgeRangeChange($event)"
+      ></ion-range>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label color="medium">Height</ion-label>
+      <ion-note slot="end">Between {{ _internalModel?.height?.lower | heightFormat }} to
+        {{ _internalModel?.height?.upper | heightFormat }}</ion-note>
+      
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-range
+        aria-label="Dual Knobs Range"
+        min="120"
+        max="213"
+        [dualKnobs]="true"
+        [value]="_internalModel?.height"
+        (ionChange)="onHeightRangeChange($event)"
+      ></ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        label="Income"
+        placeholder="Income"
+        interface="popover"
+        [(ngModel)]="_internalModel.incomeIds"
+        [multiple]="true"
+      >
+        @for(item of filtersStore.annualIncomes$ | async; track item) {
+        <ion-select-option [value]="item.id">{{
+          item.value
+        }}</ion-select-option>
+        }
+      </ion-select>
+      @if(_internalModel?.incomeIds != undefined) {
+      <ion-button
+        (click)="_internalModel.incomeIds = null"
+        fill="clear"
+        slot="end"
+        color="medium"
+      >
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+      }
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        label="Education Area"
+        placeholder="Education Area"
+        interface="popover"
+        [(ngModel)]="_internalModel.educationAreaIds"
+        [multiple]="true"
+      >
+        @for(item of filtersStore.educationAreas$ | async; track item) {
+        <ion-select-option [value]="item.id">{{
+          item.value
+        }}</ion-select-option>
+        }
+      </ion-select>
+      @if(_internalModel?.educationAreaIds != undefined) {
+      <ion-button
+        (click)="_internalModel.educationAreaIds = null"
+        fill="clear"
+        slot="end"
+        color="medium"
+      >
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+      }
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        label="Number of brothers"
+        placeholder="Number of brothers"
+        interface="popover"
+        [(ngModel)]="_internalModel.numberOfBrothers"
+        [multiple]="true"
+      >
+        @for(item of filtersStore.numberOfSiblings$ | async; track item) {
+        <ion-select-option [value]="item.id">{{
+          item.value
+        }}</ion-select-option>
+        }
+      </ion-select>
+      @if(_internalModel?.numberOfBrothers != undefined) {
+      <ion-button
+        (click)="_internalModel.numberOfBrothers = null"
+        fill="clear"
+        slot="end"
+        color="medium"
+      >
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+      }
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        label="Number of sisters"
+        placeholder="Number of sisters"
+        interface="popover"
+        [(ngModel)]="_internalModel.numberOfSisters"
+        [multiple]="true"
+      >
+        @for(item of filtersStore.numberOfSiblings$ | async; track item) {
+        <ion-select-option [value]="item.id">{{
+          item.value
+        }}</ion-select-option>
+        }
+      </ion-select>
+      @if(_internalModel?.numberOfSisters != undefined) {
+      <ion-button
+        (click)="_internalModel.numberOfSisters = null"
+        fill="clear"
+        slot="end"
+        color="medium"
+      >
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+      }
+    </ion-item>
+  </ion-list>
+</ion-content>

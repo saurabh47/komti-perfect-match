@@ -15,6 +15,10 @@ export class UsersService {
     return this.userSessionRepository.save(newSession);
   }
 
+  async updateProfileFilters(sessionId: number,filters: any) {
+    return this.userSessionRepository.update({sessionId}, {profileFilters: filters});
+  }
+
   async getSessionDetails(sessionId: number): Promise<UserSession> {
     return this.userSessionRepository.findOneOrFail({ where: { sessionId } });
   }

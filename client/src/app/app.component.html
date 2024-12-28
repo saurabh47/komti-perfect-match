@@ -1,24 +1,121 @@
 @if (!selectedGender) {
 <div class="app-container">
-    <!-- App Name -->
-    <div class="app-name">
-        Komti Perfect Match
+  <!-- App Name -->
+  <div class="app-name">{{appName}}</div>
+  <div class="app-header">
+    <h1>Discover Your Perfect Companion</h1>
+    <p class="subtitle">🌟 A Path to Love and Harmony 🌟</p>
+  </div>
+  <div class="look-for-container">
+    <h2 class="title">Who are you looking for?</h2>
+    <div class="button-group">
+      <button class="btn groom" (click)="selectOption('M')">👨 Groom</button>
+      <button class="btn bride" (click)="selectOption('F')">👰 Bride</button>
     </div>
-    <div class="app-header">
-        <h1>Discover Your Perfect Companion
-        </h1>
-        <p class="subtitle">🌟 A Path to Love and Harmony 🌟
-        </p>
-    </div>
-    <div class="look-for-container">
-        <h2 class="title">Who are you looking for?
-        </h2>
-        <div class="button-group">
-            <button class="btn groom" (click)="selectOption('M')">👨 Groom</button>
-            <button class="btn bride" (click)="selectOption('F')">👰 Bride</button>
-        </div>
-    </div>
+  </div>
 </div>
 } @else {
-<app-swipe-cards [gender]="selectedGender"></app-swipe-cards>
+<ion-tabs>
+  <ion-tab tab="people">
+    <div id="page">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{appName}}</ion-title>
+          <ion-buttons slot="primary">
+            <ion-button>
+              <ion-icon
+                lot="icon-only"
+                name="return-up-back-outline"
+              ></ion-icon>
+            </ion-button>
+            <ion-button (click)="openProfileFilterModel()">
+              <ion-icon slot="icon-only" name="options-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="example-content">
+          <app-swipe-cards
+            [gender]="selectedGender"
+            [profileFilters]="selectedProfileFilters"
+          ></app-swipe-cards>
+        </div>
+      </ion-content>
+    </div>
+  </ion-tab>
+  <ion-tab tab="history">
+    <div id="page">
+      <ion-header>
+        <ion-toolbar>
+          <ion-item>
+            <ion-select
+              aria-label="Show"
+              interface="popover"
+              placeholder="Show"
+              (ionChange)="onActionHistoryFilter($event)"
+              [value]="selectedHistoryFilter"
+            >
+              <ion-select-option value="LIKE"> Liked </ion-select-option>
+              <ion-select-option value="DISLIKE">Disliked</ion-select-option>
+              <ion-select-option value="SAVE">Saved</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="example-content">
+          <app-history
+            [selectedHistoryFilter]="selectedHistoryFilter"
+          ></app-history>
+        </div>
+      </ion-content>
+    </div>
+  </ion-tab>
+  <ion-tab tab="saved">
+    <div id="search-page">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Search</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="example-content">Search content</div>
+      </ion-content>
+    </div>
+  </ion-tab>
+  <ion-tab tab="matched">
+    <div id="search-page">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Search</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="example-content">Search content</div>
+      </ion-content>
+    </div>
+  </ion-tab>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="profile">
+      <ion-icon name="person-outline"></ion-icon>
+      Profile
+    </ion-tab-button>
+
+    <ion-tab-button tab="people">
+      <ion-icon name="layers-outline"></ion-icon>
+      People
+    </ion-tab-button>
+    <ion-tab-button tab="history">
+      <ion-icon name="reorder-four-outline"></ion-icon>
+      History
+    </ion-tab-button>
+
+    <ion-tab-button tab="likedYou">
+      <ion-icon name="heart-outline"></ion-icon>
+      Liked You
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
 }

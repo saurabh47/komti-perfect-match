@@ -3,10 +3,13 @@ import { CdkDrag, CdkDragEnd } from '@angular/cdk/drag-drop';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ProfilesService } from '../profiles.service';
 import { ActionsService } from '../actions.service';
+import { IonicModule } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { search, people, thumbsUp,saveOutline, bookmarkOutline, bookmark,personOutline, heartOutline, peopleOutline, bookmarksOutline, reorderFourOutline, bodyOutline,womanOutline,layersOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-swipe-cards',
-  imports: [CdkDrag, NgFor, NgIf, NgClass],
+  imports: [CdkDrag, NgFor, NgIf, NgClass, IonicModule],
   templateUrl: './swipe-cards.component.html',
   styleUrl: './swipe-cards.component.scss',
   standalone: true
@@ -14,21 +17,31 @@ import { ActionsService } from '../actions.service';
 export class SwipeCardsComponent {
 
   profiles: any[] = [];
+  _profileFilters = {};
   offset = 0;
   limit = 10;
   @Input() gender: 'M' | 'F' = 'F';
+
+  @Input() set profileFilters(value: any) {
+    this._profileFilters = value;
+    this.profiles = [];
+    this.offset = 0;
+    this.limit = 10;
+    this.loadMoreProfiles();
+  };
+
   showEmoji = false;
 
   constructor(private profilesService: ProfilesService, 
-      private actionsService: ActionsService) {}
+      private actionsService: ActionsService) {
+        addIcons({ search, people, thumbsUp, bookmarkOutline, bookmark,personOutline, heartOutline, peopleOutline, bookmarksOutline, reorderFourOutline, bodyOutline, womanOutline, layersOutline});
+      }
 
   ngOnInit(): void {
-    // Load initial profiles
-    this.loadMoreProfiles();
   }
 
   loadMoreProfiles(): void {
-    this.profilesService.getProfiles(this.gender, this.offset,this.limit).subscribe((nextProfiles:any) => {
+    this.profilesService.getProfiles(this.gender, this.offset,this.limit, this._profileFilters).subscribe((nextProfiles:any) => {
       this.profiles = [...this.profiles, ...nextProfiles];
       this.offset = this.offset + this.limit;
     });

@@ -14,6 +14,9 @@ export class UserSession {
   @Column({ name: 'selected_gender', type: 'varchar', length: 1 })
   selectedGender: string;
 
+  @Column({ name: 'profile_filters', type: 'json'})
+  profileFilters: any;
+
   @CreateDateColumn({ name: 'row_created_at' })
   rowCreatedAt: Date;
 

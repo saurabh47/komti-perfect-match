@@ -1,5 +1,4 @@
 :host {
-    background:#FF9AAE;
     height: 100vh;
     width: 100vw;
     display: block;
@@ -121,3 +120,14 @@
     opacity: 0;
   }
   
+
+  .example-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 60px);  
+  }
+  
+  #page {
+    height: 100%;
+  }
