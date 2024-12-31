@@ -16,5 +16,10 @@
 	--ion-color-primary-contrast-rgb: 0,0,0;
 	--ion-color-primary-shade: #e08899;
 	--ion-color-primary-tint: #ffa4b6;
-	--inner-border-width: 0;
+}
+
+ion-toolbar {
+	ion-item {
+		--inner-border-width: 0;
+	}
 }
