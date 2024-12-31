@@ -15,7 +15,7 @@ export class HeightFormatPipe implements PipeTransform {
     const inches = Math.floor((cm / 2.54) % 12);
     const meters = (cm / 100).toFixed(2);
 
-    return `${feet}' ${inches}" (${meters} mts)`;
+    return `${feet}' ${inches}"`;
   }
 
 }
