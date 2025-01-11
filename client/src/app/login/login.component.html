@@ -1,35 +1,38 @@
 <ion-content class="login-content">
-  <div class="login-container">
-    <div class="login-header">
-      <h1>Komti Perfect Match</h1>
-      <p class="subtitle">Find your perfect life partner today!</p>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Komti Perfect Match</h1>
+            <p class="subtitle">Find your perfect life partner today!</p>
+        </div>
+
+        <ion-item class="input-field">
+            <ion-label position="floating">Anubandh ID</ion-label>
+            <ion-input type="text" [(ngModel)]="username"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-field">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" class="login-btn" (click)="login()">
+            Login
+        </ion-button>
+
+        <div class="divider">
+            <span>OR</span>
+        </div>
+
+        <div class="form-footer">
+            <!-- Access Without Login -->
+            <ion-button
+                expand="block"
+                class="guest-btn"
+                fill="outline"
+                (click)="redirectToAnonymousLogin()"
+            >
+                Access Without Login
+            </ion-button>
+        </div>
     </div>
-
-    <ion-item class="input-field">
-      <ion-label position="floating">Anubandh ID</ion-label>
-      <ion-input type="text" [(ngModel)]="username"></ion-input>
-    </ion-item>
-
-    <ion-item class="input-field">
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
-
-    <ion-button expand="block" shape="round" class="login-btn" (click)="login()">
-      Login
-    </ion-button>
-
-    <div class="form-footer">
-
-    <!-- Divider -->
-    <div class="divider">
-      <span>OR</span>
-    </div>
-
-    <!-- Access Without Login -->
-    <ion-button expand="block" class="guest-btn" fill="outline" (click)="redirectToAnonymousLogin()">
-      Access Without Login
-    </ion-button>
-    </div>
-  </div>
 </ion-content>

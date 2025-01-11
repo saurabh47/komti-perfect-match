@@ -1,19 +1,25 @@
 <div class="app-container">
-  <!-- App Name -->
-  <div class="app-name">{{ appName }}</div>
-  <div class="app-header">
-      <h1>Discover Your Perfect Companion</h1>
-      <p class="subtitle">🌟 A Path to Love and Harmony 🌟</p>
-  </div>
-  <div class="look-for-container">
-      <h2 class="title">Who are you looking for?</h2>
-      <div class="button-group">
-          <button class="btn groom" (click)="selectOption('M')">
-              👨 Groom
-          </button>
-          <button class="btn bride" (click)="selectOption('F')">
-              👰 Bride
-          </button>
-      </div>
-  </div>
+    <!-- App Name -->
+    <div class="app-name">{{ appName }}</div>
+    <div class="app-header">
+        <h1>Discover Your Perfect Companion</h1>
+        <p class="subtitle">🌟 A Path to Love and Harmony 🌟</p>
+    </div>
+    <div class="look-for-container">
+        <h2 class="title">Who are you looking for?</h2>
+        <div class="button-group">
+            <button class="btn groom" (click)="selectOption('M')">
+                👨 Groom
+            </button>
+            <button class="btn bride" (click)="selectOption('F')">
+                👰 Bride
+            </button>
+        </div>
+        <div class="login-msg">
+            <ion-label>Already have an account? </ion-label>
+            <ion-label class="login-link" [routerLink]="['/login']" color="secondary"
+                >Login</ion-label
+            >
+        </div>
+    </div>
 </div>

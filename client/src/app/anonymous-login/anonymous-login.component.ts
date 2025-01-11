@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-anonymous-login',
+  imports:[IonicModule, RouterModule],
   templateUrl: './anonymous-login.component.html',
   styleUrls: ['./anonymous-login.component.scss'],
 })
