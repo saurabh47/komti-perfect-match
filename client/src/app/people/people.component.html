@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>{{ appName }}</ion-title>
+      <ion-buttons slot="primary">
+          <ion-button>
+              <ion-icon
+                  lot="icon-only"
+                  name="return-up-back-outline"
+              ></ion-icon>
+          </ion-button>
+          <ion-button (click)="openProfileFilterModel()">
+              <ion-icon
+                  slot="icon-only"
+                  name="options-outline"
+              ></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="page-content">
+      <app-swipe-cards
+          [gender]="selectedGender"
+          [profileFilters]="selectedProfileFilters"
+      ></app-swipe-cards>
+  </div>
+</ion-content>

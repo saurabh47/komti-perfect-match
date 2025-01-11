@@ -1,15 +1,18 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Req, UseGuards } from '@nestjs/common';
 import { ProfilesService } from './profiles.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('profiles')
 export class ProfilesController {
     constructor(private readonly profilesService: ProfilesService) {}
  
+    @UseGuards(JwtAuthGuard)
     @Post()
-    async getProfiles(@Query('sessionId') sessionId: string, 
-        @Query('gender') gender: 'M' | 'F' = 'F', @Query('offset') offset=0, @Query('limit') limit = 10,
+    async getProfiles(@Req() req, @Query('gender') gender: 'M' | 'F' = 'F', @Query('offset') offset=0, @Query('limit') limit = 10,
         @Body() filters) {
-        return this.profilesService.getProfiles(sessionId, gender, offset, limit, filters);
+        const user = req.user;
+        console.log(user);
+        return this.profilesService.getProfiles(user.sessionId, user.lookingFor, offset, limit, filters);
     }
 
     @Get('/annual-incomes')

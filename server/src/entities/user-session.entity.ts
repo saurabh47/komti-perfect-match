@@ -11,6 +11,9 @@ export class UserSession {
   @PrimaryGeneratedColumn({name: 'session_id'})
   sessionId: number;
 
+  @Column({name: 'user_id'})
+  userId: number;
+
   @Column({ name: 'selected_gender', type: 'varchar', length: 1 })
   selectedGender: string;
 

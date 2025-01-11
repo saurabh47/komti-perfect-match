@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserAction } from 'src/entities/user-action.entity';
 import { UserSession } from 'src/entities/user-session.entity';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, Repository, UpdateResult } from 'typeorm';
 
 @Injectable()
 export class ActionsService {
@@ -20,6 +20,16 @@ export class ActionsService {
     const newAction = this.userActionRepository.create({ sessionId, userId, action });
     return this.userActionRepository.save(newAction);
   }
+
+  async updateAction(
+    sessionId: number,
+    userId: number,
+    action: 'LIKE' | 'DISLIKE' | 'SAVE',
+  ): Promise<UpdateResult> {
+    return await this.userActionRepository.update({sessionId, userId}, {action});
+  }
+
+
 
   async getActionsBySessionAndAction(
     sessionId: number,

@@ -2,12 +2,18 @@ import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } fr
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { IonicModule } from '@ionic/angular';
+import { authInterceptor } from './login/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),provideHttpClient(), provideIonicAngular({}),
+  providers: [
+    provideHttpClient(
+      withInterceptors([authInterceptor]),
+    ),
+    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideRouter(routes),provideHttpClient(), provideIonicAngular({}),
     importProvidersFrom(IonicModule.forRoot({ mode: 'md' })),
   ],
 };

@@ -1,0 +1,12 @@
+
+<ion-grid>
+  <ion-row class="ion-justify-content-around">
+    @for(action of actions; track action) {
+      <ion-col>
+        <ion-button shape="round" (click)="onAction(action.action)">
+          <ion-icon [name]="action.icon"  size="large" ></ion-icon>
+        </ion-button>
+      </ion-col>
+    }
+  </ion-row>
+</ion-grid>

@@ -9,10 +9,8 @@ export class ProfilesService {
 
   constructor(private http: HttpClient, private usersService: UsersService) { }
 
-  getProfiles(gender: 'M' | 'F' = 'F', offset =0, limit = 10, filters = {}) {
-    const session = this.usersService.getUserSession() as any;
-
-    return this.http.post('/api/profiles', filters, {params: {sessionId: session.sessionId, gender, offset, limit}});
+  getProfiles(offset =0, limit = 10, filters = {}) {
+    return this.http.post('/api/profiles', filters, {params: { offset, limit}});
   }
 
   getAnnualIncomes() {

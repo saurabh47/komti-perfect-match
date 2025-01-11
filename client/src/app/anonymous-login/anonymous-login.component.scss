@@ -1,0 +1,127 @@
+:host {
+    height: 100vh;
+    width: 100vw;
+    display: block;
+}
+
+/* Overall App Container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(
+        135deg,
+        var(--ion-color-primary-shade),
+        var(--ion-color-primary)
+    ); /* Soft gradient background */
+    font-family: "Arial", sans-serif;
+    color: #fff;
+}
+
+/* App Name Styling */
+.app-name {
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff; /* Pure White */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+/* Header Styling */
+.app-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.app-header h1 {
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+
+.app-header .subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* Look For Container */
+.look-for-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Button Group */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Buttons Styling */
+.btn {
+    font-size: 18px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease,
+        background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+.groom {
+    background-color: #4caf50; /* Green for Groom */
+    box-shadow: 0px 4px 15px rgba(76, 175, 80, 0.5);
+}
+
+.bride {
+    background-color: #ff4081; /* Pink for Bride */
+    box-shadow: 0px 4px 15px rgba(255, 64, 129, 0.5);
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transition: width 0.5s ease, height 0.5s ease, opacity 0.3s ease;
+    z-index: 0;
+}
+
+.btn:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}

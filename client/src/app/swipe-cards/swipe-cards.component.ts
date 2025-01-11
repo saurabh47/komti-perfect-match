@@ -41,7 +41,7 @@ export class SwipeCardsComponent {
   }
 
   loadMoreProfiles(): void {
-    this.profilesService.getProfiles(this.gender, this.offset,this.limit, this._profileFilters).subscribe((nextProfiles:any) => {
+    this.profilesService.getProfiles(this.offset,this.limit, this._profileFilters).subscribe((nextProfiles:any) => {
       this.profiles = [...this.profiles, ...nextProfiles];
       this.offset = this.offset + this.limit;
     });
