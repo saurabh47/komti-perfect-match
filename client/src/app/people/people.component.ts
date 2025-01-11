@@ -17,7 +17,7 @@ export class PeopleComponent implements OnInit {
 
     selectedHistoryFilter: 'LIKE' | 'DISLIKE' | 'SAVE' = 'LIKE';
 
-    selectedProfileFilters = {
+    defaultProfileFilters = {
         age: { lower: 24, upper: 27 },
         height: { lower: 135, upper: 180 },
         incomeIds: null,
@@ -25,6 +25,7 @@ export class PeopleComponent implements OnInit {
         numberOfBrothers: null,
         numberOfSisters: null,
     };
+    selectedProfileFilters = null;
 
     constructor(
         private modalCtrl: ModalController,
@@ -36,7 +37,7 @@ export class PeopleComponent implements OnInit {
             this.usersService.setUserSession(session);
             this.selectedGender = session.selectedGender;
             this.selectedProfileFilters =
-                session.profileFilters ?? this.selectedProfileFilters;
+                session.profileFilters ?? this.defaultProfileFilters;
         });
     }
 
