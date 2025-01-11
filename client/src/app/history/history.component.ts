@@ -41,8 +41,8 @@ export class HistoryComponent  implements OnInit {
     });
   }
 
-  toggleDetails(card: any): void {
-    card.showDetails = !card.showDetails;
+  toggleDetails(profile: any): void {
+      profile.showDetails = !profile.showDetails;
   }
 
   onActionHistoryFilter(ev: any) {

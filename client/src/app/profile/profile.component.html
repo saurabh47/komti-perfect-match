@@ -1,18 +1,15 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-title>My Profile</ion-title>
-      <ion-buttons slot="primary">
-        <ion-button (click)="logout()">
-            <ion-icon
-                lot="icon-only"
-                name="log-out-outline"
-            ></ion-icon>
-        </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>My Profile</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="logout()">
+                <ion-icon lot="icon-only" name="log-out-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <ion-content class="page-content">
-  @if(profile$ | async; as profile) {
+    @if(profile$ | async; as profile) {
     <div class="card-container">
         <div class="card" (click)="toggleDetails(profile)">
             <!-- Image Background -->
@@ -20,8 +17,24 @@
                 class="card-image"
                 [style.backgroundImage]="'url(' + profile?.photo + ')'"
             ></div>
-    
-            <!-- Overlay Information -->
+
+            @if(profile.user_id == -1) {
+            <div class="anonymous-container">
+                <p class="info-text">
+                    Currently your browsing anonymously, please log in to your
+                    account.
+                </p>
+
+                <ion-button
+                    expand="block"
+                    shape="round"
+                    class="login-btn"
+                    (click)="redirectToLoginPage()"
+                >
+                    Go to Login
+                </ion-button>
+            </div>
+            } @else {
             <div
                 class="card-overlay"
                 [ngClass]="{ showDetails: profile.showDetails }"
@@ -30,12 +43,16 @@
                     {{ profile.first_name }} {{ profile.last_name }},
                     {{ profile.age }}
                 </h2>
-                <p *ngIf="profile.gender == 'M'">
+                @if(profile.gender == 'M') {
+                <p>
                     <strong>Annual Income:</strong>
                     {{ profile.annual_income_value }}
                 </p>
+                }
                 <p>{{ profile.education_details }}</p>
-                <div class="card-details" *ngIf="profile.showDetails">
+
+                @if(profile.showDetails) {
+                <div class="card-details">
                     <p><strong>Hobbies:</strong> {{ profile.hobbies }}</p>
                     <p><strong>Occupation:</strong> {{ profile.occupation }}</p>
                     <p>
@@ -55,32 +72,12 @@
                         >
                     </p>
                 </div>
+                }
             </div>
+            }
         </div>
     </div>
     } @else {
-    <div class="unauthorized-content">
-        <div class="unauthorized-container">
-            <div class="unauthorized-header">
-                <h1>Welcome to Komti Perfect Match</h1>
-            </div>
-    
-            <p class="info-text">
-                To access your profile and retain current session, please log in to
-                your account.
-            </p>
-    
-            <ion-button
-                expand="block"
-                shape="round"
-                class="login-btn"
-                (click)="redirectToLoginPage()"
-            >
-                Go to Login
-            </ion-button>
-        </div>
-    </div>
-    
+    <div>Loading...</div>
     }
 </ion-content>
-

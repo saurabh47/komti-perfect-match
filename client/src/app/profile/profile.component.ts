@@ -20,8 +20,10 @@ export class ProfileComponent  implements OnInit {
 
   }
 
-  toggleDetails(card: any): void {
-    card.showDetails = !card.showDetails;
+  toggleDetails(profile: any): void {
+    if(profile.user_id != -1) {
+      profile.showDetails = !profile.showDetails;
+    }
   }
 
   redirectToLoginPage() {

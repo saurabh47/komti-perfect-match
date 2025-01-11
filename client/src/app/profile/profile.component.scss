@@ -139,29 +139,11 @@
     left: 0;
 }
 
-.unauthorized-content {
-    --background: linear-gradient(135deg, #ffb6c1, #f08080);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    font-family: "Arial", sans-serif;
-}
-
-.unauthorized-container {
-    width: 90%;
-    max-width: 400px;
+.anonymous-container {
+    width: 100%;
     background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     padding: 30px 20px;
     text-align: center;
-}
-
-.unauthorized-header h1 {
-    font-size: 24px;
-    color: #ff6f91;
-    margin-bottom: 20px;
 }
 
 .info-text {
@@ -171,12 +153,6 @@
 }
 
 .login-btn {
+    --color: white;
     --background: #ff6f91;
-    --border-radius: 25px;
-    --box-shadow: 0 4px 15px rgba(255, 111, 145, 0.5);
-    --transition: 0.3s ease;
-}
-
-.login-btn:hover {
-    --background: #ff577b;
 }
