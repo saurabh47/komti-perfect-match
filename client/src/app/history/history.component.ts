@@ -1,4 +1,4 @@
-import { JsonPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { InfiniteScrollCustomEvent, IonicModule } from '@ionic/angular';
 import { ActionsService } from '../actions.service';
@@ -8,7 +8,7 @@ import { ProfileActionsComponent } from './profile-actions/profile-actions.compo
 
 @Component({
   selector: 'app-history',
-  imports: [IonicModule, NgFor, NgClass, NgIf, JsonPipe, ProfileActionsComponent],
+  imports: [IonicModule, NgClass, NgIf, ProfileActionsComponent],
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss'],
 })

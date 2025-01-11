@@ -1,21 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { AsyncPipe, NgIf, TitleCasePipe } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { ProfilesService } from './profiles.service';
 import { ProfileFiltersStoreService } from './profile-filters-store.service';
-import { LoginComponent } from './login/login.component';
 
 @Component({
     selector: 'app-root',
     imports: [
-        RouterOutlet,
         IonicModule,
-        TitleCasePipe,
-        AsyncPipe,
-        NgIf,
-        LoginComponent,
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',

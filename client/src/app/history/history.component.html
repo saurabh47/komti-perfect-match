@@ -1,90 +1,124 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-item slot="start">
-          <ion-select
-              aria-label="Show"
-              interface="popover"
-              placeholder="Show"
-              (ionChange)="onActionHistoryFilter($event)"
-              [value]="selectedHistoryFilter"
-          >
-              <ion-select-option value="LIKE">
-                  Liked
-              </ion-select-option>
-              <ion-select-option value="DISLIKE"
-                  >Disliked</ion-select-option
-              >
-              <ion-select-option value="SAVE"
-                  >Saved</ion-select-option
-              >
-          </ion-select>
-      </ion-item>
-      <ion-buttons slot="primary">
-          <ion-button (click)="openLink('https://analytics.komti-perfect-match.com')">
-            <ion-icon slot="icon-only" name="bar-chart-outline"></ion-icon>
-          </ion-button>
-      </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-item slot="start">
+            <ion-select
+                aria-label="Show"
+                interface="popover"
+                placeholder="Show"
+                (ionChange)="onActionHistoryFilter($event)"
+                [value]="selectedHistoryFilter"
+            >
+                <ion-select-option value="LIKE"> Liked </ion-select-option>
+                <ion-select-option value="DISLIKE">Disliked</ion-select-option>
+                <ion-select-option value="SAVE">Saved</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-buttons slot="primary">
+            <ion-button
+                (click)="openLink('https://analytics.komti-perfect-match.com')"
+            >
+                <ion-icon slot="icon-only" name="bar-chart-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list>
-    <ion-grid>
-      <ion-row>
-        @for (profile of profiles; track profile; let  i = $index) {    
-        <ion-col  size-xs="6" size-sm="6" size-md="4" size-lg="3" size-xl="3">
-            <ion-item class="profile-item" lines="none">
-              <div class="cards-container">
-                <div class="card" (click)="toggleDetails(profile)">
-                  <!-- Image Background -->
-                  <div class="card-image" [style.backgroundImage]="'url(' + profile.photo + ')'"></div>
-                  <!-- Overlay Information -->
-                  <div class="card-overlay" [ngClass]="{'showDetails': profile.showDetails}">
-                    <h2>{{ profile.first_name }} {{ profile.last_name }}, {{ profile.age }}</h2>
-                    <p *ngIf="profile.gender=='M'"><strong>Annual Income:</strong> ₹{{ profile.annual_income }} LPA</p>
-                    <p>{{ profile.education_details }}</p>
-                    <div class="card-details" *ngIf="profile.showDetails">
-                      <p><strong>Hobbies:</strong> {{ profile.hobbies }}</p>
-                      <p><strong>Occupation:</strong> {{ profile.occupation }}</p>
-                      <p><strong>Annual Income:</strong> ₹{{ profile.annual_income }} LPA</p>
-                      <p><strong>City:</strong> {{ profile.per_city }}</p>
-                      <p><strong>DOB:</strong> {{profile.dob}}</p>
-                      <p><strong>Anubandh ID: </strong><a href="https://www.anubandh.com/marriage_bureau/profile_table.jsp?user_id={{profile.user_id}}" target="_blank">{{ profile.user_id }}</a></p>
-                      <app-profile-actions [profile]="profile" [selectedProfileFilter]="selectedHistoryFilter"
-                        (afterAction)="onRemoveProfile($event, i)"></app-profile-actions>
-                    </div>
-                  </div>
-                </div>
-                <!-- <div class="card" *ngIf="profile[1]" (click)="toggleDetails(profile[1])">
-                  <div class="card-image" [style.backgroundImage]="'url(' + profile[1].photo + ')'"></div>
-                  <div class="card-overlay" [ngClass]="{'showDetails': profile[1].showDetails}">
-                    <h2>{{ profile[1].first_name }} {{ profile[1].last_name }}, {{ profile[1].age }}</h2>
-                    <p *ngIf="profile[1].gender=='M'"><strong>Annual Income:</strong> ₹{{ profile[1].annual_income }} LPA</p>
-                    <p>{{ profile[1].education_details }}</p>
-                    <div class="card-details" *ngIf="profile[1].showDetails">
-                      <p><strong>Hobbies:</strong> {{ profile[1].hobbies }}</p>
-                      <p><strong>Occupation:</strong> {{ profile[1].occupation }}</p>
-                      <p><strong>Annual Income:</strong> ₹{{ profile[1].annual_income }} LPA</p>
-                      <p><strong>City:</strong> {{ profile[1].per_city }}</p>
-                      <p><strong>DOB:</strong> {{profile[1].dob}}</p>
-                      <p><strong>Anubandh ID: </strong><a href="https://www.anubandh.com/marriage_bureau/profile_table.jsp?user_id={{profile[1].user_id}}" target="_blank">{{ profile[1].user_id }}</a></p>
-                    </div>
-                    <app-profile-actions [profile]="profile[1]" [selectedProfileFilter]="selectedHistoryFilter"
-                    (afterAction)="onRemoveProfile($event, i)"></app-profile-actions>
-                  </div>
-                </div> -->
-              </div>
-        
-            </ion-item>
-          </ion-col>
-
-          }
-        </ion-row>
+    <ion-list>
+        <ion-grid>
+            <ion-row>
+                @for (profile of profiles; track profile; let i = $index) {
+                <ion-col
+                    size-xs="6"
+                    size-sm="6"
+                    size-md="4"
+                    size-lg="3"
+                    size-xl="3"
+                >
+                    <ion-item class="profile-item" lines="none">
+                        <div class="cards-container">
+                            <div class="card" (click)="toggleDetails(profile)">
+                                <!-- Image Background -->
+                                <div
+                                    class="card-image"
+                                    [style.backgroundImage]="
+                                        'url(' + profile.photo + ')'
+                                    "
+                                ></div>
+                                <!-- Overlay Information -->
+                                <div
+                                    class="card-overlay"
+                                    [ngClass]="{
+                                        showDetails: profile.showDetails
+                                    }"
+                                >
+                                    <h2>
+                                        {{ profile.first_name }}
+                                        {{ profile.last_name }},
+                                        {{ profile.age }}
+                                    </h2>
+                                    <p *ngIf="profile.gender == 'M'">
+                                        <strong>Annual Income:</strong> ₹{{
+                                            profile.annual_income
+                                        }}
+                                        LPA
+                                    </p>
+                                    <p>{{ profile.education_details }}</p>
+                                    <div
+                                        class="card-details"
+                                        *ngIf="profile.showDetails"
+                                    >
+                                        <p>
+                                            <strong>Hobbies:</strong>
+                                            {{ profile.hobbies }}
+                                        </p>
+                                        <p>
+                                            <strong>Occupation:</strong>
+                                            {{ profile.occupation }}
+                                        </p>
+                                        <p>
+                                            <strong>Annual Income:</strong> ₹{{
+                                                profile.annual_income
+                                            }}
+                                            LPA
+                                        </p>
+                                        <p>
+                                            <strong>City:</strong>
+                                            {{ profile.per_city }}
+                                        </p>
+                                        <p>
+                                            <strong>DOB:</strong>
+                                            {{ profile.dob }}
+                                        </p>
+                                        <p>
+                                            <strong>Anubandh ID: </strong
+                                            ><a
+                                                href="https://www.anubandh.com/marriage_bureau/profile_table.jsp?user_id={{
+                                                    profile.user_id
+                                                }}"
+                                                target="_blank"
+                                                >{{ profile.user_id }}</a
+                                            >
+                                        </p>
+                                        <app-profile-actions
+                                            [profile]="profile"
+                                            [selectedProfileFilter]="
+                                                selectedHistoryFilter
+                                            "
+                                            (afterAction)="
+                                                onRemoveProfile($event, i)
+                                            "
+                                        ></app-profile-actions>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-col>
+                }
+            </ion-row>
         </ion-grid>
-
-    
-  </ion-list>
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" mode="ios">
-    <ion-infinite-scroll-content>
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" mode="ios">
+        <ion-infinite-scroll-content> </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

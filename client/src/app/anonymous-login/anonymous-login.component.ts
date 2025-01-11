@@ -19,7 +19,9 @@ export class AnonymousLoginComponent  implements OnInit {
   selectOption(gender: 'M' | 'F') {
     this.usersService.anonymousLogin(gender).subscribe((resp:any) => {
       this.usersService.setAuthToken(resp.access_token);
-      this.router.navigate(['app/people']);
+      this.router.navigate(['app/people']).then(() => {
+        window.location.reload();
+      });
     })
   }
 
