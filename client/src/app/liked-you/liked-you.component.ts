@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { InfiniteScrollCustomEvent, IonicModule } from '@ionic/angular';
 import { ProfilesService } from '../profiles.service';
-import { NgClass } from '@angular/common';
+import { ProfileCardComponent } from '../profile-card/profile-card.component';
 
 @Component({
   selector: 'app-liked-you',
   templateUrl: './liked-you.component.html',
-  imports: [IonicModule, NgClass],
+  imports: [IonicModule, ProfileCardComponent],
   styleUrls: ['./liked-you.component.scss'],
 })
 export class LikedYouComponent  implements OnInit {
@@ -34,9 +34,5 @@ export class LikedYouComponent  implements OnInit {
         }, 500);
       }
     });
-  }
-
-  toggleDetails(profile: any): void {
-      profile.showDetails = !profile.showDetails;
   }
 }

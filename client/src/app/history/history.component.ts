@@ -1,14 +1,13 @@
-import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { InfiniteScrollCustomEvent, IonicModule } from '@ionic/angular';
 import { ActionsService } from '../actions.service';
-import { chunk } from 'lodash';
 import { ProfileActionsComponent } from './profile-actions/profile-actions.component';
+import { ProfileCardComponent } from '../profile-card/profile-card.component';
 
 
 @Component({
   selector: 'app-history',
-  imports: [IonicModule, NgClass, NgIf, ProfileActionsComponent],
+  imports: [IonicModule,ProfileCardComponent, ProfileActionsComponent],
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss'],
 })

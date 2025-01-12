@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
-import { AsyncPipe, NgClass, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
-  imports: [AsyncPipe, NgClass, IonicModule, NgIf],
+  imports: [AsyncPipe, NgClass, IonicModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
