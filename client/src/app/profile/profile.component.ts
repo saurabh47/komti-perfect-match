@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { ProfileCardComponent } from '../profile-card/profile-card.component';
 
 @Component({
   selector: 'app-profile',
-  imports: [AsyncPipe, NgClass, IonicModule],
+  imports: [AsyncPipe, NgClass, IonicModule, ProfileCardComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent  implements OnInit {
   profile$;
-  constructor(private usersService: UsersService, private router: Router) { 
+  constructor(private usersService: UsersService) { 
     this.profile$ = this.usersService.getProfile();
   }
 
@@ -26,12 +26,8 @@ export class ProfileComponent  implements OnInit {
     }
   }
 
-  redirectToLoginPage() {
-    this.router.navigate(['login']);
-  }
-
   logout() {
     this.usersService.logout();
-}
+  }
 
 }

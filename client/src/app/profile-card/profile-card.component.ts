@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -12,12 +13,16 @@ export class ProfileCardComponent  implements OnInit {
 
   @Input() profile: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
 
   toggleDetails(profile: any): void {
     profile.showDetails = !profile.showDetails;
+  }
+
+  redirectToLoginPage() {
+    this.router.navigate(['login']);
   }
 
 }

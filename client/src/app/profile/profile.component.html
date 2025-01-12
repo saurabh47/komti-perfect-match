@@ -10,73 +10,7 @@
 </ion-header>
 <ion-content class="page-content">
     @if(profile$ | async; as profile) {
-    <div class="card-container">
-        <div class="card" (click)="toggleDetails(profile)">
-            <!-- Image Background -->
-            <div
-                class="card-image"
-                [style.backgroundImage]="'url(' + profile?.photo + ')'"
-            ></div>
-
-            @if(profile.user_id == -1) {
-            <div class="anonymous-container">
-                <p class="info-text">
-                    Currently your browsing anonymously, please log in to your
-                    account.
-                </p>
-
-                <ion-button
-                    expand="block"
-                    shape="round"
-                    class="login-btn"
-                    (click)="redirectToLoginPage()"
-                >
-                    Go to Login
-                </ion-button>
-            </div>
-            } @else {
-            <div
-                class="card-overlay"
-                [ngClass]="{ showDetails: profile.showDetails }"
-            >
-                <h2>
-                    {{ profile.first_name }} {{ profile.last_name }},
-                    {{ profile.age }}
-                </h2>
-                @if(profile.gender == 'M') {
-                <p>
-                    <strong>Annual Income:</strong>
-                    {{ profile.annual_income_value }}
-                </p>
-                }
-                <p>{{ profile.education_details }}</p>
-
-                @if(profile.showDetails) {
-                <div class="card-details">
-                    <p><strong>Hobbies:</strong> {{ profile.hobbies }}</p>
-                    <p><strong>Occupation:</strong> {{ profile.occupation }}</p>
-                    <p>
-                        <strong>Annual Income:</strong>
-                        {{ profile.annual_income_value }}
-                    </p>
-                    <p><strong>City:</strong> {{ profile.per_city }}</p>
-                    <p><strong>DOB:</strong> {{ profile.dob }}</p>
-                    <p>
-                        <strong>Anubandh ID: </strong
-                        ><a
-                            href="https://www.anubandh.com/marriage_bureau/profile_table.jsp?user_id={{
-                                profile.user_id
-                            }}"
-                            target="_blank"
-                            >{{ profile.user_id }}</a
-                        >
-                    </p>
-                </div>
-                }
-            </div>
-            }
-        </div>
-    </div>
+    <app-profile-card [profile]="profile"></app-profile-card>
     } @else {
     <div>Loading...</div>
     }
