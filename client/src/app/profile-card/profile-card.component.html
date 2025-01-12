@@ -27,6 +27,7 @@
             showDetails: profile.showDetails
         }"
     >
+    <ng-content select="[profile-action]"></ng-content>
         <h2>
             {{ profile.first_name }}
             {{ profile.last_name }},
@@ -71,7 +72,7 @@
                     >{{ profile.user_id }}</a
                 >
             </p>
-            <ng-content select="[actions]"></ng-content>
+            <ng-content select="[detail-actions]"></ng-content>
         </div>
         }
     </div>

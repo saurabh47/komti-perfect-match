@@ -3,132 +3,51 @@
   height: 100%;
 }
 
-.card-container {
+.profiles-container {
   position: relative;
   width: 100%;
-  height: calc(100% - 10px);
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
-.card {
+.card-container {
   position: absolute;
-  width: 95%;
+  width: 100%;
   max-width: 350px;
-  height: calc(100% - 10px);
+  height: 100%;
   background: white;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.4s ease, opacity 0.4s ease;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-.card-image {
-  flex: 3;
-  background-size: cover;
-  background-position: center;
-}
-
-.card-overlay {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  bottom: 0px;
-  width: 100%;
-  padding-top: 10px;
-  background: rgba(0, 0, 0, 0.6);
-  height: fit-content;
-  color: white;
-}
-
-.card-overlay h2 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.card-overlay p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-.card-details {
-  padding: 10px;
-  font-size: 14px;
-  width: 100%;
-  color: white;
-  background: rgb(0, 0, 0, 0.6);
-}
-
-.card.active {
+.card-container.active {
   transform: scale(1) translateY(0);
   opacity: 1;
 }
 
-.card.behind {
+.card-container.behind {
   transform: scale(0.9) translateY(20px);
   opacity: 0.8;
 }
 
-.card.swipe-left {
+.card-container.swipe-left {
   transform: translateX(-100%) rotate(-15deg);
   opacity: 0;
 }
 
-.card.swipe-right {
+.card-container.swipe-right {
   transform: translateX(100%) rotate(15deg);
   opacity: 0;
 }
 
-.card.swipe-down {
+.card-container.swipe-down {
   transform: translateY(100px);
   opacity: 0;
-}
-
-.action-buttons {
-  margin-top: 15px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.btn {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.2s ease;
-}
-
-.btn.dislike {
-  background: #ff6b6b;
-  color: white;
-}
-
-.btn.save {
-  background: #B0BEC5;
-  color: white;
-}
-
-.btn.like {
-  background: #4caf50;
-  color: white;
-}
-
-.btn:hover {
-  transform: scale(1.1);
 }
 
 .boundary {
@@ -138,8 +57,6 @@
   top: 0;
   left: 0;
 }
-
-
 
 /* Confused Emoji Animation (Background) */
 .emoji-background {

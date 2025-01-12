@@ -1,18 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { CdkDrag, CdkDragEnd } from '@angular/cdk/drag-drop';
-import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ProfilesService } from '../profiles.service';
 import { ActionsService } from '../actions.service';
 import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
-import { search, people, thumbsUp,saveOutline, bookmarkOutline, bookmark,personOutline, heartOutline, peopleOutline, bookmarksOutline, reorderFourOutline, bodyOutline,womanOutline,layersOutline } from 'ionicons/icons';
+import { search, people, thumbsUp, bookmarkOutline, bookmark,personOutline, heartOutline, peopleOutline, bookmarksOutline, reorderFourOutline, bodyOutline,womanOutline,layersOutline } from 'ionicons/icons';
+import { ProfileCardComponent } from '../profile-card/profile-card.component';
 
 @Component({
   selector: 'app-swipe-cards',
-  imports: [CdkDrag, NgFor, NgIf, NgClass, IonicModule],
+  imports: [CdkDrag, IonicModule, ProfileCardComponent],
   templateUrl: './swipe-cards.component.html',
   styleUrl: './swipe-cards.component.scss',
-  standalone: true
 })
 export class SwipeCardsComponent {
 
@@ -94,10 +93,6 @@ export class SwipeCardsComponent {
     }, 300); // Matches the duration of the animation
   }
 
-  toggleDetails(card: any): void {
-    card.showDetails = !card.showDetails;
-  }
-  
   handleKeyPress(event: KeyboardEvent): void {
     switch (event.key) {
       case 'ArrowLeft':
