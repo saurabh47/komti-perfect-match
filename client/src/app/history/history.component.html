@@ -56,17 +56,17 @@
                                         {{ profile.last_name }},
                                         {{ profile.age }}
                                     </h2>
-                                    <p *ngIf="profile.gender == 'M'">
+                                    @if(profile.gender == 'M') {
+                                    <p>
                                         <strong>Annual Income:</strong> ₹{{
                                             profile.annual_income
                                         }}
                                         LPA
                                     </p>
+                                    }
                                     <p>{{ profile.education_details }}</p>
-                                    <div
-                                        class="card-details"
-                                        *ngIf="profile.showDetails"
-                                    >
+                                    @if(profile.showDetails) {
+                                    <div class="card-details">
                                         <p>
                                             <strong>Hobbies:</strong>
                                             {{ profile.hobbies }}
@@ -109,6 +109,7 @@
                                             "
                                         ></app-profile-actions>
                                     </div>
+                                    }
                                 </div>
                             </div>
                         </div>

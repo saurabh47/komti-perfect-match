@@ -55,6 +55,16 @@ export class ProfilesService {
         return this.dataSource.query(query);
     }
 
+    async getLikedYouProfiles(userId: string, offset: number, limit: number) {
+        return this.dataSource.query(`
+            SELECT u.* FROM USER_ACTIONS ua 
+            INNER JOIN USER_SESSIONS us ON us.session_id = ua.session_id
+            INNER JOIN users u ON u.user_id = us.user_id
+            WHERE ua.action = 'LIKE' AND ua.user_id = ${userId}
+            ORDER BY ua.row_updated_at DESC LIMIT ${limit} OFFSET ${offset}
+            `);
+    }
+
     async getAnnualIncomes() {
         return this.dataSource.query(`SELECT * FROM annual_incomes`);
     }

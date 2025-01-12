@@ -13,6 +13,10 @@ export class ProfilesService {
     return this.http.post('/api/profiles', filters, {params: { offset, limit}});
   }
 
+  getLikedYouProfiles(offset =0, limit = 10) {
+    return this.http.get('/api/profiles/liked-you', {params: { offset, limit}});
+  }
+
   getAnnualIncomes() {
     return this.http.get('/api/profiles/annual-incomes');
   }

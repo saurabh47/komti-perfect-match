@@ -16,7 +16,6 @@ export class HistoryComponent  implements OnInit {
   selectedHistoryFilter: 'LIKE' | 'DISLIKE' | 'SAVE' = 'LIKE';
   offset=0;
   limit=20;
-  items: any[] = [];
   profiles: any[] = [];
 
   constructor(private actionsService: ActionsService) {}
@@ -32,12 +31,12 @@ export class HistoryComponent  implements OnInit {
   loadMoreProfiles(ev?: any) {
     this.actionsService.getActionsBySessionAndAction(this.selectedHistoryFilter, this.offset, this.limit).subscribe((resp: any) => {
       this.profiles = [...this.profiles, ...resp];
-      const twoItemArray = chunk(resp, 2);
-      this.items = [...this.items, ...twoItemArray];
       this.offset = this.offset + this.limit;
-      setTimeout(() => {
-        (ev as InfiniteScrollCustomEvent).target.complete();
-      }, 500);
+      if(ev) {
+        setTimeout(() => {
+          (ev as InfiniteScrollCustomEvent).target.complete();
+        }, 500);
+      }
     });
   }
 
@@ -49,7 +48,6 @@ export class HistoryComponent  implements OnInit {
     this.selectedHistoryFilter = ev.detail.value;
     this.offset=0;
     this.limit=20;
-    this.items = [];
     this.profiles = [];
     this.loadMoreProfiles();
   }
@@ -59,12 +57,6 @@ export class HistoryComponent  implements OnInit {
   }
 
   onRemoveProfile(profile: any, idx: number) {
-    console.log(profile);
-    console.log(this.profiles);
     this.profiles = this.profiles.filter(p => p.user_id != profile.user_id);
-    console.log(this.profiles);
-
-    const twoItemArray = chunk(this.profiles, 2);
-    this.items = [...twoItemArray];
   }
 }

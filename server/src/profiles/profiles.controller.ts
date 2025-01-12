@@ -15,6 +15,13 @@ export class ProfilesController {
         return this.profilesService.getProfiles(user.sessionId, user.lookingFor, offset, limit, filters);
     }
 
+    @UseGuards(JwtAuthGuard)
+    @Get('/liked-you')
+    async getLikedYouProfiles(@Req() req, @Query('offset') offset=0, @Query('limit') limit = 10) {
+        const user = req.user;
+        return this.profilesService.getLikedYouProfiles(user.userId, offset, limit);
+    }
+
     @Get('/annual-incomes')
     async getAnnualIncome() {
         return this.profilesService.getAnnualIncomes();
