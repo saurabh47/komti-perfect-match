@@ -1,8 +1,8 @@
-import { Controller, Post, Get, Param, Body, Query, UseGuards, Req, Put } from '@nestjs/common';
+import { Controller, Post, Get, Param, Body, Query, UseGuards, Req, Put, Delete } from '@nestjs/common';
 import { UserAction } from 'src/entities/user-action.entity';
 import { ActionsService } from './actions.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { UpdateResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 
 @Controller('actions')
 export class ActionsController {
@@ -16,6 +16,16 @@ export class ActionsController {
     @Body('action') action: 'LIKE' | 'DISLIKE' | 'SAVE',
   ): Promise<UserAction> {
     return this.actionsService.createAction(req.user.sessionId, userId, action);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete()
+  async deleteAction(
+    @Req() req,
+    @Body('userId') userId: number,
+    @Body('action') action: 'LIKE' | 'DISLIKE' | 'SAVE',
+  ): Promise<DeleteResult> {
+    return this.actionsService.deleteAction(req.user.sessionId, userId, action);
   }
 
   @UseGuards(JwtAuthGuard)

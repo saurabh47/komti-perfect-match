@@ -2,7 +2,7 @@
     <ion-toolbar>
         <ion-title>{{ appName }}</ion-title>
         <ion-buttons slot="primary">
-            <ion-button>
+            <ion-button (click)="undoAction()">
                 <ion-icon
                     lot="icon-only"
                     name="return-up-back-outline"
@@ -17,7 +17,7 @@
 <ion-content>
     <div class="page-content">
         @if(selectedProfileFilters) {
-        <app-swipe-cards
+        <app-swipe-cards #swipeCards
             [gender]="selectedGender"
             [profileFilters]="selectedProfileFilters"
         ></app-swipe-cards>

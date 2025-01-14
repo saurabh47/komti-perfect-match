@@ -16,6 +16,13 @@ export class ActionsService {
     return this.http.post('/api/actions', {userId, action});
   }
 
+  deleteAction(
+    userId: number,
+    action: 'LIKE' | 'DISLIKE' | 'SAVE',
+  ){
+    return this.http.delete('/api/actions', {body:{userId, action}});
+  }
+
   updateAction(
     userId: number,
     action: 'LIKE' | 'DISLIKE' | 'SAVE',

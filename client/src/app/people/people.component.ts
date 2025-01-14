@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { SwipeCardsComponent } from '../swipe-cards/swipe-cards.component';
 import { ProfilesFilterComponent } from '../profiles-filter/profiles-filter.component';
@@ -26,6 +26,11 @@ export class PeopleComponent implements OnInit {
         numberOfSisters: null,
     };
     selectedProfileFilters = null;
+
+    profileSwiped = null;
+
+    @ViewChild('swipeCards')
+    swipeCardsComp!: SwipeCardsComponent;
 
     constructor(
         private modalCtrl: ModalController,
@@ -61,5 +66,12 @@ export class PeopleComponent implements OnInit {
 
     onActionHistoryFilter(ev: any) {
         this.selectedHistoryFilter = ev.detail.value;
+    }
+
+    undoAction() {
+        console.log(this.swipeCardsComp);
+        if(this.swipeCardsComp) {
+            this.swipeCardsComp.undoAction();
+        }
     }
 }
