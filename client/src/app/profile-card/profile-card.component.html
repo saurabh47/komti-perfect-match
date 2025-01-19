@@ -35,7 +35,7 @@
         </h2>
         @if(profile.gender == 'M') {
         <p>
-            <strong>Annual Income:</strong> ₹{{ profile.annual_income }}
+            <strong>Annual Income:</strong> {{ profile.annual_income_value }}
             LPA
         </p>
         }
@@ -51,7 +51,7 @@
                 {{ profile.occupation }}
             </p>
             <p>
-                <strong>Annual Income:</strong> ₹{{ profile.annual_income }}
+                <strong>Annual Income:</strong> {{ profile.annual_income_value }}
                 LPA
             </p>
             <p>
